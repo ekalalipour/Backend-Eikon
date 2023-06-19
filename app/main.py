@@ -1,11 +1,15 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 # Create flask application
 app = Flask(__name__)
 
 # Connecting database to the server
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://utqrmtxr:w0XHRA1e0K69NeGUlvcxTg3lVru4FsHS@mahmud.db.elephantsql.com/utqrmtxr'
+db_uri = os.environ.get('DATABASE_URI')
+app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
 db = SQLAlchemy()
 
 if __name__ == '__main__':
