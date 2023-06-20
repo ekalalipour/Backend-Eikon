@@ -23,6 +23,7 @@ To build and run the Docker container, follow these steps:
   This endpoint triggers the ETL process. It loads the CSV files, processes them to derive features, and uploads the data into the PostgreSQL       database table. Note that the table will be truncated before entering the new data to ensure freshness.
 
 <font size='4'>__Database Query__</font><br>
+  The PostgreSQL database used in this application was created using ElephantSQL, a managed PostgreSQL database service.
   To verify that the data has been successfully uploaded to the PostgreSQL database, you can run the following query: 
     SELECT * FROM experiment_summary;
 
