@@ -12,7 +12,7 @@ To build and run the Docker container, follow these steps:
 2) Run the following command to build the Docker image: docker build -t backend-eikon .
 3) Once the image is built, run the following command to start the container: docker run -p 8080:8080 backend-eikon
 
-<font size='4'>__API Endpoints:__</font>
+<font size='4'>__API Endpoints:__</font><br>
 <font size='3'>GET Request</font><br>
   This endpoint retrieves the summary of experiments, including the total number of experiments per user, the average number of experiments, and    the most commonly experimented compound for each user. URL: http://127.0.0.1:8080/experiment_summary
 
