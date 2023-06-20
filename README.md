@@ -25,16 +25,16 @@ To build and run the Docker container, follow these steps:
 <font size='4'>__Database Query__</font><br>
   The PostgreSQL database used in this application was created using ElephantSQL, a managed PostgreSQL database service.
   To verify that the data has been successfully uploaded to the PostgreSQL database, you can run the following query: 
-    SELECT * FROM experiment_summary;
+    __SELECT * FROM experiment_summary;__
 
   Here's the query used to create the table:
 
-  CREATE TABLE experiment_summary (
+  __CREATE TABLE experiment_summary (
     user_id INTEGER PRIMARY KEY,
     total_experiments INTEGER,
     average_experiments FLOAT,
     most_common_compound_structure TEXT[]
-  );
+  );__
 
 
 
