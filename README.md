@@ -15,9 +15,7 @@ To build and run the Docker container, follow these steps:
 <font size='4'>API Endpoints:</font>
 
 <font size='3'>GET Request</font><br>
-  URL: http://127.0.0.1:8080/experiment_summary
-
-  This endpoint retrieves the summary of experiments, including the total number of experiments per user, the average number of experiments, and    the most commonly experimented compound for each user.
+  This endpoint retrieves the summary of experiments, including the total number of experiments per user, the average number of experiments, and    the most commonly experimented compound for each user. URL: http://127.0.0.1:8080/experiment_summary
 
 <font size='3'>POST Request(triggers the etl procces)</font><br>
   After running the docker image, you can use Postman to send a post request to trigger the etl process and send the data to database.              URL: http://127.0.0.1:8080/etl
