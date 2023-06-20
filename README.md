@@ -1,4 +1,4 @@
-<font size='6'>Backend-Eikon</font><br>
+<font size='6'>__Backend-Eikon__</font><br>
 <font size='4'>This repository contains a simple ETL pipeline implemented in Python using Flask. The application allows you to process CSV files, derive features from them, and upload the processed data into a PostgreSQL database table.</font>
 
 <font size='4'>Installation</font><br>
