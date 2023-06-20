@@ -13,13 +13,11 @@ To build and run the Docker container, follow these steps:
 3) Once the image is built, run the following command to start the container: docker run -p 8080:8080 backend-eikon
 
 <font size='4'>__API Endpoints:__</font>
-
 <font size='3'>GET Request</font><br>
   This endpoint retrieves the summary of experiments, including the total number of experiments per user, the average number of experiments, and    the most commonly experimented compound for each user. URL: http://127.0.0.1:8080/experiment_summary
 
 <font size='3'>POST Request(triggers the etl procces)</font><br>
   After running the docker image, you can use Postman to send a post request to trigger the etl process and send the data to database.              URL: http://127.0.0.1:8080/etl
-  
   This endpoint triggers the ETL process. It loads the CSV files, processes them to derive features, and uploads the data into the PostgreSQL       database table. Note that the table will be truncated before entering the new data to ensure freshness.
 
 <font size='4'>__Database Query__</font><br>
