@@ -1,9 +1,9 @@
 import pandas as pd
 
 def perform_etl():
-    users_df = pd.read_csv('../../data/users.csv')
-    experiments_df = pd.read_csv('../../data/user_experiments.csv')
-    compounds_df = pd.read_csv('../../data/compounds.csv')
+    users_df = pd.read_csv('/Users/emadkalalipour/Coding-projects/Backend-Eikon/data/users.csv')
+    experiments_df = pd.read_csv('/Users/emadkalalipour/Coding-projects/Backend-Eikon/data/user_experiments.csv')
+    compounds_df = pd.read_csv('/Users/emadkalalipour/Coding-projects/Backend-Eikon/data/compounds.csv')
 
     users_df.columns = users_df.columns.str.strip()
     experiments_df.columns = experiments_df.columns.str.strip()
@@ -36,17 +36,78 @@ def perform_etl():
     # Remove unnecessary columns
     final_df = final_df.drop(['name', 'email', 'signup_date'], axis=1)
 
-    print("Consolidated Data:")
-    print(final_df)
+    # Prepare the data for database insertion
+    extracted_data = final_df.to_dict('records')
 
-    extracted_data = {
-        'consolidated_data': final_df.to_dict(orient='records')
-    }
+    # print("Extracted Data:")
+    # for record in extracted_data:
+    #     print(record)
 
     return extracted_data
 
-if __name__ == '__main__':
-    extracted_data = perform_etl()
+# Call the perform_etl() function
+extracted_data = perform_etl()
+
+
+
+
+
+
+# import pandas as pd
+
+# def perform_etl():
+#     users_df = pd.read_csv('/Users/emadkalalipour/Coding-projects/Backend-Eikon/data/users.csv')
+#     experiments_df = pd.read_csv('/Users/emadkalalipour/Coding-projects/Backend-Eikon/data/user_experiments.csv')
+#     compounds_df = pd.read_csv('/Users/emadkalalipour/Coding-projects/Backend-Eikon/data/compounds.csv')
+
+#     users_df.columns = users_df.columns.str.strip()
+#     experiments_df.columns = experiments_df.columns.str.strip()
+#     compounds_df.columns = compounds_df.columns.str.strip()
+
+#     experiments_df['experiment_compound_ids'] = experiments_df['experiment_compound_ids'].apply(lambda x: [int(i) for i in x.split(';')])
+
+#     experiments_df = experiments_df.explode('experiment_compound_ids')
+#     experiments_df.columns = experiments_df.columns.str.strip()
+
+#     total_experiments_per_user = experiments_df.groupby('user_id')['experiment_id'].nunique().reset_index(name='total_experiments')
+#     average_experiment_run_time = experiments_df.groupby('user_id')['experiment_run_time'].mean().reset_index(name='average_experiment_run_time')
+
+#     def get_most_common_compounds(x):
+#         most_common = x.value_counts()
+#         max_count = most_common.max()
+#         return most_common[most_common == max_count].index.tolist()
+
+#     most_common_compound_per_user = experiments_df.groupby('user_id')['experiment_compound_ids'].apply(get_most_common_compounds).reset_index()
+#     most_common_compound_per_user = most_common_compound_per_user.explode('experiment_compound_ids')
+#     most_common_compound_per_user.columns = ['user_id', 'compound_id']
+#     most_common_compound_per_user = most_common_compound_per_user.merge(compounds_df, on='compound_id', how='left')
+
+#     most_common_compound_per_user = most_common_compound_per_user.groupby('user_id')['compound_name'].apply(lambda x: ', '.join(x.str.strip())).reset_index()
+
+#     final_df = users_df.merge(total_experiments_per_user, on='user_id', how='left')
+#     final_df = final_df.merge(average_experiment_run_time, on='user_id', how='left')
+#     final_df = final_df.merge(most_common_compound_per_user, on='user_id', how='left')
+
+#     # Remove unnecessary columns
+#     final_df = final_df.drop(['name', 'email', 'signup_date'], axis=1)
+
+#     print("Consolidated Data:")
+#     print(final_df)
+
+#     extracted_data = {
+#         'total_experiments_per_user': total_experiments_per_user.to_dict(orient='records'),
+#         'average_experiments_per_user': average_experiment_run_time.to_dict(orient='records'),
+#         'most_common_compound_per_user': most_common_compound_per_user.to_dict(orient='records')
+#     }
+#     # extracted_data = {
+#     #     'consolidated_data': final_df.to_dict(orient='records')
+#     # }
+
+#     return extracted_data
+
+# if __name__ == '__main__':
+#     extracted_data = perform_etl()
+
 
 
 
