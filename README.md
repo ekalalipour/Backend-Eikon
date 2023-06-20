@@ -1,7 +1,7 @@
-<font size='6'>Backend-Eikon</font>
+<font size='6'>Backend-Eikon</font><br>
 <font size='4'>This repository contains a simple ETL pipeline implemented in Python using Flask. The application allows you to process CSV files, derive features from them, and upload the processed data into a PostgreSQL database table.</font>
 
-<font size='4'>Installation</font>
+<font size='4'>Installation</font><br>
 Clone this repository to your local machine.
 Make sure you have Docker installed and running.
 
@@ -14,17 +14,17 @@ To build and run the Docker container, follow these steps:
 
 <font size='4'>API Endpoints:</font>
 
-<font size='3'>GET Request</font>
+<font size='3'>GET Request</font><br>
   URL: http://127.0.0.1:8080/experiment_summary
 
   This endpoint retrieves the summary of experiments, including the total number of experiments per user, the average number of experiments, and    the most commonly experimented compound for each user.
 
-<font size='3'>POST Request(triggers the etl procces)</font>
+<font size='3'>POST Request(triggers the etl procces)</font><br>
   After running the docker image, you can use Postman to send a post request to trigger the etl process and send the data to database.              URL: http://127.0.0.1:8080/etl
   
   This endpoint triggers the ETL process. It loads the CSV files, processes them to derive features, and uploads the data into the PostgreSQL       database table. Note that the table will be truncated before entering the new data to ensure freshness.
 
-<font size='4'>Database Query</font>
+<font size='4'>Database Query</font><br>
   To verify that the data has been successfully uploaded to the PostgreSQL database, you can run the following query: 
     SELECT * FROM experiment_summary;
 
